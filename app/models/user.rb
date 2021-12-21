@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_many :followings, :through => :given_follows, :source => :follower
 
   has_many :posts, dependent: :destroy
+
+  has_many :responses
 end
