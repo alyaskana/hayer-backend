@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_23_114429) do
+ActiveRecord::Schema.define(version: 2022_02_23_123432) do
 
   create_table "follows", force: :cascade do |t|
     t.integer "follower_id", null: false
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 2022_02_23_114429) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.text "description"
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_replies_on_post_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -91,6 +102,8 @@ ActiveRecord::Schema.define(version: 2022_02_23_114429) do
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "follows", "users", column: "following_id"
   add_foreign_key "posts", "users"
+  add_foreign_key "replies", "posts"
+  add_foreign_key "replies", "users"
   add_foreign_key "responses", "posts"
   add_foreign_key "responses", "users"
   add_foreign_key "taggings", "tags"
