@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show update destroy ]
+  before_action :set_user, only: %i[show update destroy]
+  before_action :authenticate_user!, except: %i[index show]
 
   # GET /users
   # GET /users.json
@@ -9,8 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
-  def show
-  end
+  def show; end
 
   # POST /users
   # POST /users.json
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if @user.update(user_params)
+    if @user == current_user && @user.update(user_params)
       render :show, status: :ok, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -37,17 +37,22 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
+    if @user == current_user && @user.destroy
+      render :destroy, status: :ok, location: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :about, :avatar, :link, :email, :personal_email)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :about, :avatar, :link, :email, :personal_email)
+  end
 end
