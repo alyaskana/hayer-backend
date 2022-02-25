@@ -1,1 +1,1 @@
-json.extract! response, :id, :user, :text, :created_at
+json.extract! response, :id, :user, :description, :link, :created_at
