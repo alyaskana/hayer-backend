@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: %i[index show]
+  load_and_authorize_resource
   
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.includes(:ad_types).all
   end
 
   # GET /posts/1 or /posts/1.json
@@ -22,7 +21,10 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    ad_type_ids = params["post"]["ad_types"]
+    ad_types = AdType.where(id: ad_type_ids)
+    @post = current_user.posts.new(post_params)
+    @post.ad_types = ad_types
 
     respond_to do |format|
       if @post.save
@@ -58,13 +60,8 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
-
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description, :user_id, :deadline, :type, :format)
+      params.require(:post).permit(:title, :description, :deadline, :format)
     end
 end

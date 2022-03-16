@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_12_223349) do
+ActiveRecord::Schema.define(version: 2022_03_16_210757) do
+
+  create_table "ad_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ad_types_posts", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "ad_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ad_type_id"], name: "index_ad_types_posts_on_ad_type_id"
+    t.index ["post_id"], name: "index_ad_types_posts_on_post_id"
+  end
 
   create_table "follows", force: :cascade do |t|
     t.integer "follower_id", null: false
@@ -92,6 +107,8 @@ ActiveRecord::Schema.define(version: 2022_03_12_223349) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "ad_types_posts", "ad_types"
+  add_foreign_key "ad_types_posts", "posts"
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "follows", "users", column: "following_id"
   add_foreign_key "posts", "users"

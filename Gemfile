@@ -32,6 +32,7 @@ gem 'acts-as-taggable-on', '~> 8.1.0'
 # Auth
 gem 'devise', '~> 4.8'
 gem 'devise-jwt', '~> 0.9.0'
+gem 'cancancan', '~> 3.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
