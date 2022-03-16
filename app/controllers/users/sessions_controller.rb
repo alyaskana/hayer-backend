@@ -4,10 +4,10 @@ class Users::SessionsController < Devise::SessionsController
 
   private
 
-  def respond_with(resource, _opts = {})
-    @user = resource
-    render 'create'
-  end
+  # def respond_with(resource, _opts = {})
+  #   @user = resource
+  #   render 'new'
+  # end
 
   def respond_to_on_destroy
     head :no_content

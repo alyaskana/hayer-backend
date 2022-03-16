@@ -1,7 +1,2 @@
-json.extract! post, :id, :title, :description, :type, :format, :user_id, :created_at, :updated_at
-json.tags post.tags
+json.extract! post, :id, :title, :description, :user_id, :deadline, :type, :format, :created_at, :updated_at
 json.url post_url(post, format: :json)
-
-json.responses do 
-  json.array! post.responses, partial: "/responses/response", as: :response
-end

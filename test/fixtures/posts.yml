@@ -3,11 +3,15 @@
 one:
   title: MyString
   description: MyText
-  contact: MyString
   user: one
+  deadline: 2022-03-16 23:07:01
+  type: 
+  format: MyString
 
 two:
   title: MyString
   description: MyText
-  contact: MyString
   user: two
+  deadline: 2022-03-16 23:07:01
+  type: 
+  format: MyString
