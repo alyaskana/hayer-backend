@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
-  resources :replies
   devise_for :users
-    # defaults: { format: :json },
-    # path: '',
-    # path_names: {
+  # defaults: { format: :json },
+  # path: '',
+  # path_names: {
     #   sign_in: 'api/login',
     #   sign_out: 'api/logout',
     #   registration: 'api/signup'
     # },
     # controllers: {
-    #   registrations: 'users/registrations',
-    #   sessions: 'users/sessions'
-    # }
+      #   registrations: 'users/registrations',
+      #   sessions: 'users/sessions'
+      # }
   resources :posts
   resources :users
+  resources :responses
   root 'posts#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

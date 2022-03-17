@@ -3,9 +3,11 @@
 one:
   user: one
   post: one
-  text: MyText
+  description: MyText
+  link: MyString
 
 two:
   user: two
   post: two
-  text: MyText
+  description: MyText
+  link: MyString
