@@ -16,11 +16,11 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create response" do
-    assert_difference('Rersonse.count') do
+    assert_difference('Response.count') do
       post responses_url, params: { response: { description: @response.description, link: @response.link, post_id: @response.post_id, user_id: @response.user_id } }
     end
 
-    assert_redirected_to response_url(Rersonse.last)
+    assert_redirected_to response_url(Response.last)
   end
 
   test "should show response" do
@@ -39,7 +39,7 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy response" do
-    assert_difference('Rersonse.count', -1) do
+    assert_difference('Response.count', -1) do
       delete response_url(@response)
     end
 
