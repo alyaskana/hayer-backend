@@ -5,6 +5,8 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :validatable,
           :jwt_authenticatable, jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
 
+  mount_uploader :avatar, AvatarUploader
+
   has_many :received_follows, foreign_key: :follower_id, class_name: 'Follow', dependent: :destroy
   has_many :given_follows, foreign_key: :following_id, class_name: 'Follow', dependent: :destroy
 
