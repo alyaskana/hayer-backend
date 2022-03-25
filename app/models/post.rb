@@ -1,15 +1,15 @@
 class Post < ApplicationRecord
   belongs_to :user
   acts_as_taggable_on :tags
-  has_many :responses
-  has_and_belongs_to_many :ad_types
+  has_many :responses, dependent: :destroy
+  has_and_belongs_to_many :ad_types, dependent: :destroy
 
   enum format: { 
-    online: "online", 
-    moscow: "moscow", 
-    st_petersburg: "st_petersburg", 
-    nizhny_novgorod: "nizhny_novgorod",
-    perm: "perm"
+    online: "Онлайн", 
+    moscow: "Москва", 
+    st_petersburg: "Санкт-Петербург", 
+    nizhny_novgorod: "Нижний Новгород",
+    perm: "Пермь"
   }  
 end
  
