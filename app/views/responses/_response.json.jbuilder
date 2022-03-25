@@ -1,1 +1,4 @@
-json.extract! response, :id, :user, :description, :link, :created_at
+json.extract! response, :id, :description, :link, :created_at
+json.user do 
+  json.partial! "users/user_short", user: response.user
+end
