@@ -12,6 +12,11 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show; end
 
+  def profile
+    @user = current_user
+    render :show
+  end
+
   # POST /users
   # POST /users.json
   def create
