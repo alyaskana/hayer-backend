@@ -2,7 +2,7 @@
 // like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
 // of the page.
 
-import React, { FC } from "react";
+import { FC } from "react";
 import { render } from "react-dom";
 
 type AppProps = {
@@ -12,7 +12,7 @@ export const App: FC<AppProps> = ({ name }) => <div>Hello {name}!</div>;
 
 document.addEventListener("DOMContentLoaded", () => {
   render(
-    <App name="LAMINAAAAT!" />,
+    <App name="REACT LAMINAAAAT!" />,
     document.body.appendChild(document.createElement("div"))
   );
 });
