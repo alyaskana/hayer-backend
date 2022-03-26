@@ -1,15 +1,13 @@
-class UsersController < ApplicationController
+class Api::UsersController < Api::ApplicationController
   before_action :set_user, only: %i[show update destroy]
   before_action :authenticate_user!, except: %i[index show]
 
   # GET /users
-  # GET /users.json
   def index
     @users = User.all
   end
 
   # GET /users/1
-  # GET /users/1.json
   def show; end
 
   def profile
@@ -18,7 +16,6 @@ class UsersController < ApplicationController
   end
 
   # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
 
@@ -30,7 +27,6 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     if @user == current_user && @user.update(user_params)
       render :show, status: :ok, location: @user
@@ -40,7 +36,6 @@ class UsersController < ApplicationController
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     if @user == current_user && @user.destroy
       render :destroy, status: :ok, location: @user

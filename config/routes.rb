@@ -12,14 +12,15 @@ Rails.application.routes.draw do
                sessions: 'users/sessions'
              }
 
-  resources :posts, defaults: { format: :json }
-  resources :users, defaults: { format: :json } do
-    collection do
-      get :profile
+  namespace :api, defaults: { format: 'json' } do
+    resources :posts
+    resources :users do
+      collection do
+        get :profile
+      end
     end
+    resources :responses
   end
-  resources :users, defaults: { format: :json }
-  resources :responses, defaults: { format: :json }
   root 'posts#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

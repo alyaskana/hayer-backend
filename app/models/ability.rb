@@ -6,7 +6,8 @@ class Ability
   def initialize(user)
     can :read, Post
 
-    return unless user.present?  # additional permissions for logged in users (they can read their own posts)
+    return unless user.present? # additional permissions for logged in users (they can read their own posts)
+
     can :update, Post, user: user
     can :destroy, Post, user: user
     can :create, Post, user: user
