@@ -1,6 +1,7 @@
 # ===== RESET DATABASE ======
 Post.destroy_all
 User.destroy_all
+AdType.destroy_all
 
 # ===== CREATE AD TYPES ======
 

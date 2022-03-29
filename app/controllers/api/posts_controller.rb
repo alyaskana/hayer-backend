@@ -19,8 +19,8 @@ class Api::PostsController < Api::ApplicationController
 
   # POST /posts
   def create
-    ad_type_ids = params['post']['ad_types']
-    ad_types = AdType.where(key: ad_type_ids)
+    ad_type_keys = params['post']['ad_types']
+    ad_types = AdType.where(key: ad_type_keys)
     @post = current_user.posts.new(post_params)
     @post.ad_types = ad_types
 
