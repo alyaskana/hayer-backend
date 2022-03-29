@@ -39,7 +39,7 @@ user_sasha = User.create!({
   personal_email: "abarabonovad@gmail.com",
   password: "123456",
   interests: ['пиво', 'дизайн', 'веб'],
-  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/alina.jpeg"))
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/sasha.jpeg"))
 })
 
 user_tolya = User.create!({
@@ -92,6 +92,7 @@ posts = [
     title: "Верстка сайта",
     description: "Кто готов для людей искусства помочь с версткой сайта? Нужна простая админка для добавления статей и редактирования текстов. Бюджет у них 40000. Сроки до февраля.",
     deadline: Time.now + 5.days,
+    ad_types: ad_types.sample(2),
     format: Post.formats.values.sample,
     responses: [
       user_sasha.responses.new({
