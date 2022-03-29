@@ -6,9 +6,9 @@ User.destroy_all
 
 def create_ad_types() 
   [
-    AdType.create!(name: "Работа"),
-    AdType.create!(name: "Учеба"),
-    AdType.create!(name: "Ивенты")
+    AdType.create!(name: "Работа", key: "work"),
+    AdType.create!(name: "Учеба", key: "study"),
+    AdType.create!(name: "Ивенты", key: "events")
   ]
 end
 

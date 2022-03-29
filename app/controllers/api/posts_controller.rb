@@ -20,12 +20,12 @@ class Api::PostsController < Api::ApplicationController
   # POST /posts
   def create
     ad_type_ids = params['post']['ad_types']
-    ad_types = AdType.where(id: ad_type_ids)
+    ad_types = AdType.where(key: ad_type_ids)
     @post = current_user.posts.new(post_params)
     @post.ad_types = ad_types
 
     if @post.save
-      render :show, status: :created, location: @post
+      render :show, status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -34,7 +34,7 @@ class Api::PostsController < Api::ApplicationController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      render :show, status: :ok, location: @post
+      render :show, status: :ok
     else
       render json: @post.errors, status: :unprocessable_entity
     end
