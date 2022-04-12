@@ -3,7 +3,7 @@ class Api::PostsController < Api::ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.includes(:ad_types).all
+    @posts = Post.includes(:ad_types).order(created_at: :desc).all
   end
 
   # GET /posts/1
@@ -25,6 +25,7 @@ class Api::PostsController < Api::ApplicationController
     @post.ad_types = ad_types
 
     if @post.save
+      ActionCable.server.broadcast 'feed_channel', 'new message'
       render :show, status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
