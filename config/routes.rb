@@ -18,6 +18,11 @@ Rails.application.routes.draw do
       collection do
         get :profile
       end
+
+      member do
+        post :verify_email
+        post :complete_signup
+      end
     end
     resources :responses
   end

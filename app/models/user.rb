@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_accessor :skip_password_validation
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise  :database_authenticatable, :registerable,
@@ -17,4 +19,20 @@ class User < ApplicationRecord
   has_many :responses, dependent: :destroy
 
   has_many :responses
+
+  scope :registered, -> { where(registration_state: :complete) }
+
+  with_options if: proc { |u| u.registration_state == "complete" } do
+    validates :first_name, presence: true
+    validates :last_name, presence: true
+    validates :password, presence: true
+  end
+
+  protected
+
+  def password_required?
+    return false if skip_password_validation
+
+    super
+  end
 end

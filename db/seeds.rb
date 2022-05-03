@@ -27,7 +27,8 @@ user_alina = User.create!({
   personal_email: "ialina240200@gmail.com",
   password: "123456",
   interests: ['фронтенд', 'пиво', 'веб'],
-  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/alina.jpeg"))
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/alina.jpeg")),
+  rigistration_state: :complete
 })
 
 user_sasha = User.create!({
@@ -39,7 +40,8 @@ user_sasha = User.create!({
   personal_email: "abarabonovad@gmail.com",
   password: "123456",
   interests: ['пиво', 'дизайн', 'веб'],
-  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/sasha.jpeg"))
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/sasha.jpeg")),
+  rigistration_state: :complete
 })
 
 user_tolya = User.create!({
@@ -51,7 +53,8 @@ user_tolya = User.create!({
   personal_email: "tniksnikiforov@gmail.com",
   password: "123456",
   interests: ['музыка', 'дизайн', 'веб'],
-  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/alina.jpeg"))
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/alina.jpeg")),
+  rigistration_state: :complete
 })
 
 # ===== CREATE POSTS =====

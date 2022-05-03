@@ -1,10 +1,10 @@
 class Api::UsersController < Api::ApplicationController
-  before_action :set_user, only: %i[show update destroy]
+  before_action :set_user, only: %i[show update destroy verify_email complete_signup]
   before_action :authenticate_user!, except: %i[index show]
 
   # GET /users
   def index
-    @users = User.all
+    @users = User.registered
   end
 
   # GET /users/1
@@ -44,6 +44,26 @@ class Api::UsersController < Api::ApplicationController
     end
   end
 
+  def verify_email
+    if @user.registration_code == params[:code]
+      head :ok
+    else
+      render json: { error: "Неверный код" }, status: :bad_request
+    end
+  end
+
+  def complete_signup
+    if @user.registration_state != "draft"
+      return render json: { error: "Пользователь уже зарегестрирован" }, status: :bad_request
+    end
+
+    if @user.update(complete_user_params.merge(registration_state: :complete))
+      render :show, status: :ok
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -54,5 +74,9 @@ class Api::UsersController < Api::ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:first_name, :last_name, :about, :avatar, :link, :email, :personal_email)
+  end
+
+  def complete_user_params
+    params.require(:user).permit(:first_name, :last_name, :about, :avatar, :link, :password)
   end
 end
