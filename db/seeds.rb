@@ -21,40 +21,43 @@ ad_types = create_ad_types()
 user_alina = User.create!({
   first_name: "Алина",
   last_name: "Бычкова",
-  link: "https://t.me/alyaskana",
   about: "Умею делать фронтенд, пить пиво в ровеснике и ремонт",
   email: "aabychkova_4@edu.hse.ru",
-  personal_email: "ialina240200@gmail.com",
   password: "123456",
-  interests: ['фронтенд', 'пиво', 'веб'],
+  course: "3",
+  edu_program: "Дизайн",
+  instagram: "alyaskana",
+  telegram: "alyaskana",
   avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/alina.jpeg")),
-  rigistration_state: :complete
+  registration_state: :complete
 })
 
 user_sasha = User.create!({
   first_name: "Саша",
   last_name: "Барабонова",
-  link: "https://t.me/abarabonova",
   about: "Я саша продуктовая дизайнерка приколистка подписывайтесь на мой смешной + красивый инстаграм",
   email: "adbarabonava@edu.hse.ru",
-  personal_email: "abarabonovad@gmail.com",
   password: "123456",
-  interests: ['пиво', 'дизайн', 'веб'],
+  course: "3",
+  edu_program: "Дизайн",
+  instagram: "abarabonova",
+  telegram: "abarabonova",
   avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/sasha.jpeg")),
-  rigistration_state: :complete
+  registration_state: :complete
 })
 
 user_tolya = User.create!({
   first_name: "Толя",
   last_name: "Никифоров",
-  link: "https://t.me/tnikzzz",
   about: "Сладкий, как сахар, крепкий, как виски.",
   email: "avnikiforov_4@edu.hse.ru",
-  personal_email: "tniksnikiforov@gmail.com",
   password: "123456",
-  interests: ['музыка', 'дизайн', 'веб'],
-  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/alina.jpeg")),
-  rigistration_state: :complete
+  course: "3",
+  edu_program: "Дизайн",
+  instagram: "iki.psd",
+  telegram: "tnikzzz",
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/tolya.jpg")),
+  registration_state: :complete
 })
 
 # ===== CREATE POSTS =====

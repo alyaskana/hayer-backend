@@ -22,11 +22,11 @@ class User < ApplicationRecord
 
   scope :registered, -> { where(registration_state: :complete) }
 
-  with_options if: proc { |u| u.registration_state == "complete" } do
-    validates :first_name, presence: true
-    validates :last_name, presence: true
-    validates :password, presence: true
-  end
+  # with_options if: proc { |u| u.registration_state == "email_verified" } do
+  #   validates :first_name, presence: true
+  #   validates :last_name, presence: true
+  #   validates :password, presence: true
+  # end
 
   protected
 

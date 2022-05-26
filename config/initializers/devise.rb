@@ -11,7 +11,8 @@
 Devise.setup do |config|
   config.jwt do |jwt|
     jwt.dispatch_requests = [
-      ['POST', %r{^/login$}]
+      ['POST', %r{^/login$}],
+      ['POST', %r{^api/users/\d+/complete_signup}]
     ]
     jwt.revocation_requests = [
       ['DELETE', %r{^/logout$}]

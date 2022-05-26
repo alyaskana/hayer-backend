@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_up(resource_name, resource) if resource.persisted?
       render json: resource.to_json
     else
-      render json: { errors: resource.errors }.to_json
+      render json: { error: resource.errors.full_messages }.to_json, status: :unprocessable_entity
     end
   end
 
