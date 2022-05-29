@@ -5,9 +5,9 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.verify_email.subject
   #
-  def verify_email(user)
-    @user = user
+  def verify_email()
+    @user = params[:user]
 
-    mail to: user.email
+    mail to: @user.email
   end
 end

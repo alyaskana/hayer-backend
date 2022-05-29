@@ -10,6 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.skip_password_validation = true
     resource.registration_code = 6.times.map { rand(10) }.join
 
+    UserMailer.with(user: resource).verify_email.deliver_now
     if resource.save
       sign_up(resource_name, resource) if resource.persisted?
       render json: resource.to_json
