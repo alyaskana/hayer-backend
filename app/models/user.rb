@@ -18,8 +18,6 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :responses, dependent: :destroy
 
-  has_many :responses
-
   scope :registered, -> { where(registration_state: :complete) }
 
   # with_options if: proc { |u| u.registration_state == "email_verified" } do
