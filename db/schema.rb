@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_26_165602) do
+ActiveRecord::Schema.define(version: 2022_06_16_192339) do
 
   create_table "ad_types", force: :cascade do |t|
     t.string "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2022_05_26_165602) do
     t.datetime "deadline"
     t.string "type"
     t.string "format"
+    t.string "link"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
