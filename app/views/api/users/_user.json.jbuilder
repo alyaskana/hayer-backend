@@ -4,3 +4,4 @@ json.followers user.followers
 json.followings user.followings
 json.responses user.responses
 json.avatar user.avatar.url
+json.favorite_posts user.favorite_posts.pluck(:id)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_16_192339) do
+ActiveRecord::Schema.define(version: 2022_06_19_115122) do
 
   create_table "ad_types", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 2022_06_16_192339) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ad_type_id"], name: "index_ad_types_posts_on_ad_type_id"
     t.index ["post_id"], name: "index_ad_types_posts_on_post_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -115,6 +124,8 @@ ActiveRecord::Schema.define(version: 2022_06_16_192339) do
 
   add_foreign_key "ad_types_posts", "ad_types"
   add_foreign_key "ad_types_posts", "posts"
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "follows", "users", column: "following_id"
   add_foreign_key "posts", "users"

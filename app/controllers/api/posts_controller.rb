@@ -47,6 +47,12 @@ class Api::PostsController < Api::ApplicationController
     head :no_content
   end
 
+  # POST /posts/1/favorite
+  def favorite
+    current_user.favorite_posts << @post
+    head :ok
+  end
+
   private
 
   # Only allow a list of trusted parameters through.

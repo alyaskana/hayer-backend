@@ -4,12 +4,13 @@ class Post < ApplicationRecord
   has_many :responses, dependent: :destroy
   has_and_belongs_to_many :ad_types, dependent: :destroy
 
-  enum format: { 
-    online: "Онлайн", 
-    moscow: "Москва", 
-    st_petersburg: "Санкт-Петербург", 
-    nizhny_novgorod: "Нижний Новгород",
-    perm: "Пермь"
-  }  
+  has_many :favorites, dependent: :destroy
+
+  enum format: {
+    online: 'Онлайн',
+    moscow: 'Москва',
+    st_petersburg: 'Санкт-Петербург',
+    nizhny_novgorod: 'Нижний Новгород',
+    perm: 'Пермь'
+  }
 end
- 

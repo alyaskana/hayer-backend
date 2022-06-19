@@ -13,7 +13,11 @@ Rails.application.routes.draw do
              }
 
   namespace :api, defaults: { format: 'json' } do
-    resources :posts
+    resources :posts do
+      member do
+        post :favorite
+      end
+    end
     resources :users do
       collection do
         get :profile
