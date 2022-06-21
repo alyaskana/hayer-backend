@@ -7,7 +7,9 @@ class Api::PostsController < Api::ApplicationController
   end
 
   # GET /posts/1
-  def show; end
+  def show
+    @post.responses.update_all(is_read: true)
+  end
 
   # GET /posts/new
   def new
