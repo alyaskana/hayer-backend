@@ -11,3 +11,4 @@ json.responses do
 end
 
 json.is_favorited Favorite.where(post: post, user: current_user).exists?
+json.unread_responses_count post.responses.where(is_read: false).count
