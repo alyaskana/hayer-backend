@@ -53,6 +53,17 @@ class Api::PostsController < Api::ApplicationController
     head :ok
   end
 
+  def latest_responses
+    @posts = current_user.posts.includes(:responses, :ad_types, :tags).order('responses.created_at desc')
+    render :index
+  end
+
+  def my_latest_responses
+    @posts = Post.includes(:responses, :ad_types, :tags).where('responses.user_id = ?',
+                                                               current_user.id).order('responses.created_at desc')
+    render :index
+  end
+
   private
 
   # Only allow a list of trusted parameters through.

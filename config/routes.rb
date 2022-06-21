@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     resources :posts do
+      collection do
+        get :latest_responses
+        get :my_latest_responses
+      end
       member do
         post :favorite
       end

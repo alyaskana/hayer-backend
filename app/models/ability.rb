@@ -13,6 +13,8 @@ class Ability
     can :create, Post, user: user
 
     can :favorite, Post
+    can :latest_responses, Post
+    can :my_latest_responses, Post
 
     # Define abilities for the passed in user here. For example:
     #
