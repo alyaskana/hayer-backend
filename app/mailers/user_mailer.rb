@@ -7,7 +7,8 @@ class UserMailer < ApplicationMailer
   #
   def verify_email()
     @user = params[:user]
-
-    mail to: @user.email
+    attachments.inline["logo.png"] = File.read("#{Rails.root}/app/assets/images/logo.png")
+    attachments.inline["vk.png"] = File.read("#{Rails.root}/app/assets/images/vk.png")
+    mail to: @user.email, subject: 'Код доступа'
   end
 end
