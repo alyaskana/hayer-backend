@@ -25,7 +25,6 @@ class Api::PostsController < Api::ApplicationController
     @post.ad_types = ad_types
 
     if @post.save
-      ActionCable.server.broadcast 'feed_channel', 'new message'
       render :show, status: :created
     else
       render json: @post.errors, status: :unprocessable_entity

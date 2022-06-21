@@ -22,6 +22,8 @@ class Api::ResponsesController < Api::ApplicationController
     @response = current_user.responses.new(response_params)
 
     if @response.save
+      UsersChannel.broadcast_to(current_user, @response)
+
       redirect_to :show, status: :created, location: @response
     else
       render json: @response.errors, status: :unprocessable_entity
