@@ -49,20 +49,35 @@ class Api::PostsController < Api::ApplicationController
 
   # POST /posts/1/favorite
   def favorite
-    current_user.favorite_posts << @post
-    head :ok
+    favorite = Favorite.find_by(user: current_user, post: @post)
+    if favorite
+      favorite.destroy
+      head :ok
+    else
+      current_user.favorite_posts << @post
+      head :ok
+    end
+  end
+  
+  # GET /posts/favorites
+  def favorites
+    @posts = current_user.favorite_posts
+    render :index
   end
 
+  # GET /posts/latest_responses
   def latest_responses
     @posts = current_user.posts.includes(:responses, :ad_types, :tags).order('responses.created_at desc')
     render :index
   end
 
+  # GET /posts/my_latest_responses
   def my_latest_responses
     @posts = Post.includes(:responses, :ad_types, :tags).where('responses.user_id = ?',
                                                                current_user.id).order('responses.created_at desc')
     render :index
   end
+
 
   private
 

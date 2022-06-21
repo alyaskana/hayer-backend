@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       collection do
         get :latest_responses
         get :my_latest_responses
+        get :favorites
       end
       member do
         post :favorite

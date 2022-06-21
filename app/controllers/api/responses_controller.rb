@@ -52,6 +52,6 @@ class Api::ResponsesController < Api::ApplicationController
 
   # Only allow a list of trusted parameters through.
   def response_params
-    params.require(:response).permit(:user_id, :post_id, :description, :link)
+    params.require(:response).permit(:post_id, :description, :link)
   end
 end

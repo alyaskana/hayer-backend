@@ -9,3 +9,5 @@ end
 json.responses do
   json.array! post.responses, partial: 'api/responses/response', as: :response
 end
+
+json.is_favorited Favorite.where(post: post, user: current_user).exists?
