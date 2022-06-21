@@ -24,7 +24,7 @@ class Api::ResponsesController < Api::ApplicationController
     if @response.save
       UsersChannel.broadcast_to(current_user, @response)
 
-      redirect_to :show, status: :created, location: @response
+      render :show, status: :created
     else
       render json: @response.errors, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class Api::ResponsesController < Api::ApplicationController
   # PATCH/PUT /responses/1
   def update
     if @response.update(response_params)
-      render :show, status: :ok, location: @response
+      render :show, status: :ok
     else
       render json: @response.errors, status: :unprocessable_entity
     end
